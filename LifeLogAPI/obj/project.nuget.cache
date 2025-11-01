@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zZWupFQB6JI=",
+  "dgSpecHash": "kGpnButIyrg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\touya\\source\\repos\\LifeLogAPI\\LifeLogAPI.csproj",
+  "projectFilePath": "C:\\Users\\touya\\source\\lifelog-app\\LifeLogAPI\\LifeLogAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\touya\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\touya\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",

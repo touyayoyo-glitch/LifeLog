@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LifeLogAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc8ecfafee419f0045ccb0516b9e5f846f3e82a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("LifeLogAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LifeLogAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4541,11 +4541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\touya\\source\\repos\\LifeLogAPI\\LifeLogAPI.csproj",
+      "projectUniqueName": "C:\\Users\\touya\\source\\lifelog-app\\LifeLogAPI\\LifeLogAPI.csproj",
       "projectName": "LifeLogAPI",
-      "projectPath": "C:\\Users\\touya\\source\\repos\\LifeLogAPI\\LifeLogAPI.csproj",
+      "projectPath": "C:\\Users\\touya\\source\\lifelog-app\\LifeLogAPI\\LifeLogAPI.csproj",
       "packagesPath": "C:\\Users\\touya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\touya\\source\\repos\\LifeLogAPI\\obj\\",
+      "outputPath": "C:\\Users\\touya\\source\\lifelog-app\\LifeLogAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
