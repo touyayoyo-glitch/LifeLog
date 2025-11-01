@@ -1,0 +1,103 @@
+{
+  "folders": [
+    {
+      "path": "LifeLogAPI",
+      "name": "Backend (API)"
+    },
+    {
+      "path": "lifelog-frontend",
+      "name": "Frontend (React)"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.cwd": "${workspaceFolder}"
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "API Run",
+        "type": "shell",
+        "command": "dotnet",
+        "args": ["run"],
+        "options": {
+          "cwd": "${workspaceFolder:Backend (API)}"
+        },
+        "group": "none",
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "group": "dev-servers"
+        },
+        "problemMatcher": "$msCompile",
+        "isBackground": true
+      },
+      {
+        "label": "Frontend Run",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "dev"],
+        "options": {
+          "cwd": "${workspaceFolder:Frontend (React)}"
+        },
+        "group": "none",
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "group": "dev-servers"
+        },
+        "isBackground": true
+      },
+      {
+        "label": "Start All",
+        "dependsOn": ["API Run", "Frontend Run"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always"
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch API",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder:Backend (API)}/bin/Debug/net8.0/LifeLogAPI.dll",
+        "args": [],
+        "cwd": "${workspaceFolder:Backend (API)}",
+        "stopAtEntry": false,
+        "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        },
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "sourceFileMap": {
+          "/Views": "${workspaceFolder:Backend (API)}/Views"
+        }
+      },
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Frontend",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder:Frontend (React)}"
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Full Stack",
+        "configurations": ["Launch API", "Launch Frontend"],
+        "stopAll": true
+      }
+    ]
+  }
+}
