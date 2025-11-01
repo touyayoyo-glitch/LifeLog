@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "F5で両方起動",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "フルスタック起動",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "echo", "起動完了"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

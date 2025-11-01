@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend起動",
+      "type": "shell",
+      "command": "start",
+      "args": ["powershell", "-NoExit", "-Command", "cd '${workspaceFolder:Backend (API)}'; dotnet run --launch-profile https"],
+      "windows": {
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/c"]
+          }
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend起動",
+      "type": "shell",
+      "command": "start",
+      "args": ["powershell", "-NoExit", "-Command", "cd '${workspaceFolder:Frontend (React)}'; npm run dev"],
+      "windows": {
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/c"]
+          }
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "ブラウザを開く",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "Start-Sleep -Seconds 5; Start-Process 'https://localhost:7257'; Start-Sleep -Seconds 2; Start-Process 'http://localhost:5173'"
+      ]
+    },
+    {
+      "label": "フルスタック起動",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Backend起動", "Frontend起動", "ブラウザを開く"]
+    }
+  ]
+}

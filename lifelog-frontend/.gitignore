@@ -1,0 +1,17 @@
+# Node
+lifelog-frontend/node_modules/
+lifelog-frontend/dist/
+lifelog-frontend/.env
+lifelog-frontend/.env.local
+
+# .NET
+LifeLogAPI/bin/
+LifeLogAPI/obj/
+LifeLogAPI/*.user
+LifeLogAPI/appsettings.Development.json
+LifeLogAPI/wwwroot/uploads/
+
+# IDE
+.vscode/
+.vs/
+*.code-workspace
