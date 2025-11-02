@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # 依存関係をインストール（キャッシュ無効化）
-RUN npm cache clean --force && npm install --no-optional
+RUN npm ci
 
 # ソースコードをコピー
 COPY . .
