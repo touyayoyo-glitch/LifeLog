@@ -7,7 +7,7 @@ RUN npm install
 
 # ソースコードをコピーしてビルド
 COPY . .
-RUN npm run build
+RUN npx vite build
 
 # Nginxで配信
 FROM nginx:alpine
