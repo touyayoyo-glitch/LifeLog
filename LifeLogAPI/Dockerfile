@@ -19,8 +19,5 @@ WORKDIR /app
 # ビルド結果をコピー
 COPY --from=build /app/out .
 
-# Railwayのポート環境変数を使用（Program.csで設定済み）
-ENV ASPNETCORE_URLS=http://+:${PORT}
-
 # アプリケーションを起動
 ENTRYPOINT ["dotnet", "LifeLogAPI.dll"]
