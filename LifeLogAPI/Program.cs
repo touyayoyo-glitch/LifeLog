@@ -8,6 +8,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ===== Railway対応: ポート設定 =====
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 // ===== サービス登録 =====
 
 // 1. コントローラー追加
@@ -71,11 +75,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // 5. CORS設定（フロントエンドからのアクセス許可）
+var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:5173";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:3000") // Vite/Reactのデフォルトポート
+        policy.WithOrigins(
+                "http://localhost:5173",
+                "http://localhost:3000",
+                frontendUrl,
+                "https://frontend-production-960e.up.railway.app"
+              )
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -86,19 +96,16 @@ var app = builder.Build();
 
 // ===== ミドルウェア設定 =====
 
-// 開発環境のみSwagger有効化
-if (app.Environment.IsDevelopment())
+// Swagger有効化（本番環境でも一時的に有効化してテスト）
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "LifeLog API V1");
-        c.RoutePrefix = string.Empty; // ルートURL (https://localhost:7257/) でSwaggerを開く
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "LifeLog API V1");
+    c.RoutePrefix = string.Empty;
+});
 
-// HTTPS リダイレクト
-app.UseHttpsRedirection();
+// HTTPSリダイレクトを無効化（Railwayが自動対応）
+// app.UseHttpsRedirection();
 
 // 静的ファイル配信（画像アップロード用）
 app.UseStaticFiles();
@@ -112,5 +119,13 @@ app.UseAuthorization();
 
 // コントローラールーティング
 app.MapControllers();
+
+// ヘルスチェックエンドポイント
+app.MapGet("/health", () => Results.Ok(new { 
+    status = "healthy", 
+    timestamp = DateTime.UtcNow,
+    environment = app.Environment.EnvironmentName,
+    port = port
+}));
 
 app.Run();
